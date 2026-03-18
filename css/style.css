@@ -14,8 +14,8 @@
 
    /* Farver */
    --color-sky-top: #a6d8ff;
-   --color-sky-mid: #ffffff;
-   --color-sky-bot: #ffffff;
+   --color-sky-mid: #bfd5e6;
+   --color-sky-bot: #e0e7ed;
    --color-night: #222833;
    --color-sun: #ffffff;
 
@@ -139,7 +139,7 @@
   z-index: 1;
   left: calc(-1 * var(--off-car1));
   /* will-change: transform; */
-  animation: car1 18s linear infinite;
+  animation: car1 20s linear infinite;
 }
 
 @keyframes car1 {
@@ -156,7 +156,7 @@
   z-index: 1;
   right: calc(-1 * var(--off-car2));
   /* will-change: transform; */
-  animation: car2 12s linear infinite;
+  animation: car2 14s linear infinite;
 }
 
 @keyframes car2 {
@@ -178,7 +178,7 @@
   z-index: 1;
   left: calc(-1 * var(--off-car3));
   will-change: transform;
-  animation: car3 8s linear infinite;
+  animation: car3 10s linear infinite;
 }
 
 @keyframes car3 {
