@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* Hente Alle DOM-elementer */
 
-    const getRedCar = document.querySelector("#redcar");
+    const getRedCar = document.querySelector("#redCar");
     const getBlueCar = document.querySelector("#blueCar");
     const getPoliceCar = document.querySelector("#policeCar");
     const sun = document.querySelector(".sun");
