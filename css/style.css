@@ -1,0 +1,212 @@
+/* ---------------------------------------------------------
+   Import af font
+--------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* ---------------------------------------------------------
+   Root-variabler
+   - px: billedstørrelser, offsets
+   - farver + font
+--------------------------------------------------------- */
+:root {
+
+   --font-body: 'Poppins', sans-serif;
+
+   /* Farver */
+   --color-sky-top: #a6d8ff;
+   --color-sky-mid: #ffffff;
+   --color-sky-bot: #ffffff;
+   --color-night: #222833;
+   --color-sun: #ffffff;
+
+   /* Billede størrekser (px) */
+   --sun-size: 100px;
+   --car-w: 200px;
+
+   /* Start /exit offset (px) */
+   --off-car1: 200px;
+   --off-car2: 200px;
+   --off-car3: 200px;
+
+}
+
+
+/* ---------------------------------------------------------
+   Global reset
+--------------------------------------------------------- */
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: var(--font-body);
+}
+
+
+/* ---------------------------------------------------------
+   Scene
+--------------------------------------------------------- */
+.scene {
+   position: relative;
+   height: 100vh;
+   overflow: hidden; /* Overflow undersøger den studerende */
+   background: linear-gradient( var(--color-sky-top), var(--color-sky-mid), var(--color-sky-bot));
+}
+
+/* Nat-tilstand */
+.scene.night {
+   background: var(--color-night) ;
+}
+
+
+/* ---------------------------------------------------------
+   Sol (px for størrelse, vw/vh for placering; animationer bruger vw/vh)
+--------------------------------------------------------- */
+.sun {
+   position: relative;
+   width: var(--sun-size);
+   height: var(--sun-size);
+   background: var(--color-sun);
+   border-radius: 50%;
+   top: 10vh;
+   left: 55%;
+   transform: translateX(-50%);
+   box-shadow: 0 0 5vw var(--color-sun);
+   transition: 0.2s;
+   cursor: pointer;
+}
+
+/* Nat: dæmp glød - måne-effekt */
+.scene.night .sun {
+   left: 45%;
+   box-shadow: 0 0 0 var(--color-sun);
+}
+
+/* :before undersøges af den studerende - find ud af hvad den property gør i CSS */
+.scene.night .sun:before {
+   /* Content property undersøges af den studerende - find ud af hvad den property Gør i CSS */
+   content: "";
+   position: absolute;
+   top: -20px;
+   left: 20px;
+   width: 100%;
+   height: 100%;
+   background: var(--color-night);
+   border-radius: 50%;
+}
+
+
+/* ---------------------------------------------------------
+   Baggrund (parallax)
+   - Brug vw i animationen: 0 → -100vw
+   - Sæt background-size til 100vw for at matche bevægelse
+--------------------------------------------------------- */
+
+.bg {
+   position:absolute;
+   /* inset undersøges af den studerende - find ud af hvad den property gør i CSS */
+   inset: auto 0 0 0;
+   width: 100%;
+   height: 280px;
+   background: url(../img/bg.png);
+   background-size: 100vw auto;
+   /* background-repeat-x undersøges af den studerende */
+   background-repeat: repeat-x;
+   animation: animateBg 17s linear infinite;
+}
+
+/* Flyt hele flisen/vejen en view-port til venstre */
+@keyframes animateBg {
+   0% { background-position-x: 0;}
+   100% {background-position-x: -100vw;}
+}
+
+
+
+
+
+/* ---------------------------------------------------------
+   Biler
+   - px for selve billedstørrelsen
+   - vw/vh til placering og ALLE animationsafstande
+--------------------------------------------------------- */
+
+/* car1: venstre → højre (spejlvendt) */
+.car1 {
+  position: absolute;
+  bottom: 2.8vh;
+  width: var(--car-w);
+  max-width: 28vw;
+  z-index: 1;
+  left: calc(-1 * var(--off-car1));
+  /* will-change: transform; */
+  animation: car1 18s linear infinite;
+}
+
+@keyframes car1 {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(calc(100vw + var(--off-car1))); }
+}
+
+/* car2: venstre → højre (spejlvendt) */
+.car2 {
+  position: absolute;
+  bottom: 2.8vh;
+  width: var(--car-w);
+  max-width: 28vw;
+  z-index: 1;
+  right: calc(-1 * var(--off-car2));
+  /* will-change: transform; */
+  animation: car2 12s linear infinite;
+}
+
+@keyframes car2 {
+  0%   { transform: translateX(0) rotateY(180deg); }
+  90%,
+  100% { transform: translateX(calc(-100vw - var(--off-car2))) rotateY(180deg); }
+}
+
+
+
+
+
+/* car3: venstre → højre (spejlvendt) */
+.car3 {
+  position: absolute;
+  bottom: -3.4vh;
+  width: var(--car-w);
+  max-width: 28vw;
+  z-index: 1;
+  left: calc(-1 * var(--off-car3));
+  will-change: transform;
+  animation: car3 8s linear infinite;
+}
+
+@keyframes car3 {
+  0%   { transform: translateX(0) rotateY(180deg); }
+  100% { transform: translateX(calc(100vw + var(--off-car3))) rotateY(180deg); }
+}
+
+
+.tooltip {
+   position: fixed;
+   right: 16px;
+   bottom: 16px;
+   background-color: rgba(0, 0, 0, 0.85);
+   color: #fff;
+   padding: 10px 12px;
+   border-radius: 8px;
+   font-size: 14px;
+   line-height: 1.35;
+   max-width: min(320px, 90vw);
+   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+   opacity: 0;
+   transform: translateY(8px);
+   transition: opacity 0.25s ease, transform 0.25s ease;
+   pointer-events: none; /* så den ikke fanger når du flytter musen henover */
+   z-index: 1000;
+}
+
+.tooltip.is-visible {
+   opacity: 1;
+   transform: translateY(0);
+}
