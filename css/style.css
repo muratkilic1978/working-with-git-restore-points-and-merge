@@ -28,6 +28,7 @@
    --off-car2: 200px;
    --off-car3: 200px;
    --off-car4: 200px;
+   --off-car5: 200px;
 
 }
 
@@ -201,6 +202,25 @@
   0%   { transform: translateX(0); }
   90%,
   100% { transform: translateX(calc(-100vw - var(--off-car4))) }
+}
+
+
+/* car5: venstre → højre (spejlvendt) */
+.car5 {
+  position: absolute;
+  bottom: 2.8vh;
+  width: var(--car-w);
+  max-width: 28vw;
+  z-index: 1;
+  right: calc(-1 * var(--off-car5));
+  /* will-change: transform; */
+  animation: car5 18s linear infinite;
+}
+
+@keyframes car5 {
+  0%   { transform: translateX(0); }
+  90%,
+  100% { transform: translateX(calc(-100vw - var(--off-car5))) }
 }
 
 
