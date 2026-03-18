@@ -27,6 +27,7 @@
    --off-car1: 200px;
    --off-car2: 200px;
    --off-car3: 200px;
+   --off-car4: 200px;
 
 }
 
@@ -166,9 +167,6 @@
 }
 
 
-
-
-
 /* car3: venstre → højre (spejlvendt) */
 .car3 {
   position: absolute;
@@ -184,6 +182,25 @@
 @keyframes car3 {
   0%   { transform: translateX(0) rotateY(180deg); }
   100% { transform: translateX(calc(100vw + var(--off-car3))) rotateY(180deg); }
+}
+
+
+/* car4: venstre → højre (spejlvendt) */
+.car4 {
+  position: absolute;
+  bottom: 2.8vh;
+  width: var(--car-w);
+  max-width: 28vw;
+  z-index: 1;
+  right: calc(-1 * var(--off-car4));
+  /* will-change: transform; */
+  animation: car4 7s linear infinite;
+}
+
+@keyframes car4 {
+  0%   { transform: translateX(0); }
+  90%,
+  100% { transform: translateX(calc(-100vw - var(--off-car4))) }
 }
 
 
