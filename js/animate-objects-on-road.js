@@ -86,11 +86,11 @@ document.addEventListener("DOMContentLoaded", () => {
     /* Oprette lydobjekter */
 
     const soundRedCar = new Audio();
-    soundRedCar.src = "../sound/redCarHorn.wav";
+    soundRedCar.src = "../sound/red-car-sound";
     const soundPoliceCar = new Audio();
-    soundPoliceCar.src = "../sound/policeCarSound.wav";
+    soundPoliceCar.src = "../sound/police-car-sound.wav";
     const soundBlueCar = new Audio();
-    soundBlueCar.src = "../sound/blueCarSound.wav";
+    soundBlueCar.src = "../sound/blue-car-sound.wav";
 
     /* Tjeck om den røde bil (getRedCar) med ID attributten "redcar" findes i DOM'en */
     if (getRedCar) {
